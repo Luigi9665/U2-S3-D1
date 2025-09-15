@@ -97,7 +97,8 @@ form.addEventListener("submit", (e) => {
 divPet.addEventListener("click", (e) => {
   const petDiv = e.target.closest(".pet");
   if (petDiv) {
-    petDiv.classList.add("bg-warning", "selected");
+    petDiv.classList.toggle("bg-warning");
+    petDiv.classList.toggle("selected");
   }
 });
 
@@ -114,8 +115,11 @@ const compareOwner = () => {
 
 btnCompare.addEventListener("click", () => {
   array = compareOwner();
-  console.log(array);
-  console.log(Pet.isSameOwner(arrayPet[array[0]], arrayPet[array[1]]));
+  if (array.length <= 1) {
+    return;
+  } else {
+    console.log(Pet.isSameOwner(arrayPet[array[0]], arrayPet[array[1]]));
+  }
 });
 
 btnReste.addEventListener("click", () => {
