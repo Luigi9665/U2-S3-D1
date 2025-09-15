@@ -32,7 +32,7 @@ class Pet {
     this.species = _species;
     this.breed = _breed;
   }
-  isSameOwner(pet1, pet2) {
+  static isSameOwner(pet1, pet2) {
     if (pet1.ownerName === pet2.ownerName) {
       return true;
     } else {
@@ -44,7 +44,9 @@ class Pet {
 const form = document.getElementById("pet");
 const arrayPet = [];
 const divPet = document.getElementById("listPet");
+let array = [];
 const btnCompare = document.getElementById("btnCompare");
+const btnReste = document.getElementById("btnReset");
 
 const addPet = function () {
   const divNone = document.getElementById("removeNone");
@@ -111,7 +113,16 @@ const compareOwner = () => {
 };
 
 btnCompare.addEventListener("click", () => {
-  const array = compareOwner();
+  array = compareOwner();
   console.log(array);
   console.log(Pet.isSameOwner(arrayPet[array[0]], arrayPet[array[1]]));
+});
+
+btnReste.addEventListener("click", () => {
+  array = [];
+  const selected = document.querySelectorAll(".selected");
+  for (let i = 0; i < selected.length; i++) {
+    const element = selected[i];
+    element.classList.remove("selected", "bg-warning");
+  }
 });
